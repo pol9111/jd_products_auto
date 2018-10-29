@@ -1,0 +1,44 @@
+
+
+aioredis单独写出, 数据库密码, 写个样本
+
+key和page
+
+
+
+
+J_AD_34268472949
+url
+
+J_comment_34268472949
+url
+
+
+
+item去重问题
+bloomfilter
+
+
+
+# total_page = await page.xpath('//span[@class="p-skip"]/em/b/text()')
+
+
+# offset = 1
+# while offset < 2:
+#     js = "var q=document.documentElement.scrollTop=9000"
+#     await page.evaluate(js)
+#     await page.waitForXPath('//ul[@class="gl-warp clearfix"]/li[60]')
+#     html = await page.content()
+#     await parse(html, redis_conn)
+#     await page.type('.p-skip > .input-txt', str(offset))
+#     await page.click('.p-skip > .btn')
+#     total_num = await redis_conn.llen('jd_items')
+#     if total_num >= 580:
+#         print('开始存入mongo..')
+#         await save_to_mongo(redis_conn, coll, total_num)
+#     # next_page = await page.xpath('//a[contains(@class, "pn-next")]')
+#     offset += 1
+#     await page.click('#J_bottomPage > span.p-num > a.pn-next')
+# print('succeed')
+
+# next_page = await page.xpath('//a[contains(@class, "pn-next")]')
