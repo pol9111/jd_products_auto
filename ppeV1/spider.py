@@ -1,8 +1,6 @@
 import asyncio
 import random
 import re
-from urllib.parse import quote
-
 import aioredis
 import motor.motor_asyncio
 import redisbloomfilter
