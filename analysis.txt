@@ -1,19 +1,14 @@
 
 
-aioredis单独写出, 数据库密码, 写个样本
+aioredis 写个样本
 
 key和page
 
 
+多进程ppe?
 
-
-J_AD_34268472949
-//div[@class="p-name p-name-type-2"]/a/i/@id
-url
-
-J_comment_34268472949
-url
-
+单进程sel
+多进程sel
 
 
 item去重问题

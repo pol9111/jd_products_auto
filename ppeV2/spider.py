@@ -1,10 +1,9 @@
 import asyncio
 import random
 import re
-from urllib.parse import quote
-
 import aioredis
 import motor.motor_asyncio
+import redis
 import redisbloomfilter
 from pyppeteer import errors
 from fake_useragent import UserAgent
@@ -23,11 +22,12 @@ class jdSpider(object):
         coll = self.db[key]
 
         browser_options = {
-            # 'headless': False, # 无界面模式
+            'headless': False, # 无界面模式
             # 'autoClose': False, # 自动关闭
             'args': [
                 '--user-agent={}'.format(UserAgent().random), # 设置UA
                 # '--proxy-server=http://127.0.0.1:8080', # 设置代理
+                # '--no-sandbox',
                      ],
                            }
         browser = await launch(options=browser_options)
@@ -126,8 +126,8 @@ def main():
     db = client['jd']
     bf = redisbloomfilter.BloomFilter(db=0, key='jd_bf', password='qwe123') # 初始化bloomfilter
 
-    # keys = ['ipad', 'macbook']
-    keys = ['蓝牙耳机', '固态硬盘']
+    keys = ['蓝牙耳机', '固态硬盘', '机械键盘']
+    # keys = ['macbook']
     base_url = 'https://search.jd.com/Search?keyword={}&enc=utf-8&wq={}'
 
     jdCrawler = jdSpider(db, bf)
@@ -137,7 +137,7 @@ def main():
         url = base_url.format(key, key)
         task = asyncio.ensure_future(jdCrawler.adownloader(url, loop, key))
         tasks.append(task)
-    loop.run_until_complete(asyncio.gather(*tasks))
+    loop.run_until_complete(tasks)
 
 
 if __name__ == '__main__':
